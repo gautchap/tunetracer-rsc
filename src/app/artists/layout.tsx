@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { ReactNode } from "react";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { redirect } from "next/navigation";
+import authGuard from "@/utils/auth-guard";
 
 export const metadata: Metadata = {
     title: "Artists",
@@ -10,7 +9,7 @@ export const metadata: Metadata = {
 };
 
 export default async function ArtistsLayout({ children }: { children: ReactNode }) {
-    const session = await getServerSession(authOptions);
+    const session = await authGuard();
     if (!session) redirect("/");
     return <>{children}</>;
 }

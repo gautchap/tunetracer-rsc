@@ -1,11 +1,10 @@
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { redirect } from "next/navigation";
 import TracksWrapper from "@/components/tracks-wrapper";
 import TabWrapper from "@/components/tab-wrapper";
+import authGuard from "@/utils/auth-guard";
 
 export default async function Page() {
-    const session = await getServerSession(authOptions);
+    const session = await authGuard();
     if (!session) redirect("/");
 
     return (

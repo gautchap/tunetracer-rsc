@@ -1,12 +1,11 @@
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import Image from "next/image";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import SpotifyLogo from "@/assets/spotify-logo.png";
 import NotifyHeartDynamicGradient from "@/assets/notify-heart-dynamic-gradient.png";
+import authGuard from "@/utils/auth-guard";
 
 export default async function Page() {
-    const session = await getServerSession(authOptions);
+    const session = await authGuard();
     return (
         <>
             <h1 className="text-5xl sm:text-6xl font-bold">TuneTracer</h1>
