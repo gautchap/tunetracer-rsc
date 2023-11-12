@@ -16,6 +16,7 @@
         "project": "./tsconfig.json"
     },
     "plugins": ["react", "react-refresh", "github", "unicorn"],
+    "ignorePatterns": ["src/components/ui/*"],
     "rules": {
         "react-refresh/only-export-components": "warn",
         "unicorn/filename-case": "off",
